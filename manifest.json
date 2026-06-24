@@ -1,0 +1,44 @@
+{
+  "name": "Gagana Samoa — Learn the Samoan Language",
+  "short_name": "Gagana Samoa",
+  "description": "Learn the Samoan language with videos, audio, quizzes and flashcards — kids to adults!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#CAF0F8",
+  "theme_color": "#0077B6",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["education", "language"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Take a Quiz",
+      "url": "/?section=quiz",
+      "description": "Jump straight to the quiz"
+    },
+    {
+      "name": "Watch Videos",
+      "url": "/?section=videos",
+      "description": "Watch Samoan language videos"
+    },
+    {
+      "name": "Flashcards",
+      "url": "/?section=flashcards",
+      "description": "Study with flashcards"
+    }
+  ]
+}

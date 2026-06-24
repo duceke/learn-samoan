@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<meta name="theme-color" content="#0077B6" />
+<meta name="description" content="Learn Gagana Samoa — the Samoan language — with videos, audio, quizzes, flashcards and lessons for kids and adults." />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Gagana Samoa" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="icon" type="image/png" href="icons/icon-192.png" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+<title>Gagana Samoa — Learn the Samoan Language</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--c1:#0077B6;--c2:#00B4D8;--c3:#90E0EF;--c4:#CAF0F8;--c5:#F5B7B1;--cfont:'Fredoka One',cursive}
+html,body{height:100%;background:#CAF0F8;font-family:var(--cfont)}
+.app{min-height:100vh;background:#CAF0F8;max-width:900px;margin:0 auto}
+
+/* HERO */
+.hero{background:#0077B6;padding:1.6rem 1.5rem 1.4rem;text-align:center;position:relative;overflow:hidden}
+.hero-blob1{position:absolute;top:-30px;right:-20px;width:130px;height:130px;border-radius:50%;background:#00B4D8;opacity:.35}
+.hero-blob2{position:absolute;bottom:-40px;left:-25px;width:110px;height:110px;border-radius:50%;background:#90E0EF;opacity:.3}
+.hero-tag{display:inline-block;background:#00B4D8;color:#fff;font-size:12px;padding:4px 14px;border-radius:20px;margin-bottom:10px;letter-spacing:1px}
+.hero h1{color:#fff;font-size:26px;font-weight:400;margin-bottom:4px}
+.hero-sub{color:#CAF0F8;font-size:13px;margin-bottom:14px}
+.hero-word{font-size:44px;color:#fff}
+.hero-meaning{color:#90E0EF;font-size:13px;margin-top:4px}
+
+/* NAV */
+.nav{display:flex;overflow-x:auto;background:#0077B6;padding:0 6px;gap:2px;scrollbar-width:none;border-bottom:3px solid #00B4D8;position:sticky;top:0;z-index:100}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{padding:10px 13px;font-size:12px;color:#CAF0F8;background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all 0.15s;font-family:var(--cfont);display:flex;align-items:center;gap:5px}
+.nav-btn.active{color:#fff;border-bottom-color:#F5B7B1;background:rgba(255,255,255,.1);border-radius:8px 8px 0 0}
+.nav-btn:hover{color:#fff;background:rgba(255,255,255,.08)}
+
+/* CONTENT */
+.content{padding:1rem}
+.section{display:none}.section.active{display:block}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.stat-card{background:#0077B6;border-radius:14px;padding:12px;text-align:center;border:3px solid #00B4D8}
+.stat-num{font-size:22px;color:#fff}
+.stat-label{font-size:11px;color:#90E0EF;margin-top:2px}
+
+/* PANELS */
+.panel{background:#fff;border:3px solid #00B4D8;border-radius:16px;padding:1.25rem;margin-bottom:1rem}
+.panel h3{font-size:16px;color:#0077B6;margin-bottom:1rem;display:flex;align-items:center;gap:8px;font-weight:400}
+
+/* LESSON GRID */
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px;margin-bottom:1rem}
+.lesson-card{background:#fff;border:3px solid #90E0EF;border-radius:16px;padding:.9rem;cursor:pointer;transition:all 0.15s;text-align:center}
+.lesson-card:hover{border-color:#00B4D8;transform:translateY(-2px);background:#CAF0F8}
+.lesson-card .icon{font-size:24px;margin-bottom:6px;display:block}
+.lesson-card .title{font-size:13px;color:#0077B6;margin-bottom:3px}
+.lesson-card .count{font-size:11px;color:#00B4D8}
+.lesson-card .badge{display:inline-block;background:#F5B7B1;color:#7a3a36;font-size:10px;padding:2px 9px;border-radius:20px;margin-top:5px}
+
+/* TABLE */
+.vocab-table{width:100%;border-collapse:collapse;font-size:13px}
+.vocab-table th{text-align:left;color:#0077B6;font-weight:400;padding:7px 8px;border-bottom:2px solid #CAF0F8;font-size:12px}
+.vocab-table td{padding:8px;border-bottom:1.5px solid #CAF0F8;vertical-align:middle}
+.vocab-table tr:hover td{background:#CAF0F8}
+.vocab-table tr:last-child td{border-bottom:none}
+.sw{color:#0077B6;font-weight:400}
+.ph{color:#00B4D8;font-size:11px;font-style:italic}
+
+/* BUTTONS */
+.speak-btn{background:#CAF0F8;border:2px solid #90E0EF;cursor:pointer;color:#0077B6;padding:4px 9px;font-size:12px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;transition:all 0.15s;font-family:var(--cfont)}
+.speak-btn:hover{background:#00B4D8;color:#fff;border-color:#0077B6}
+.btn-primary{background:#0077B6;color:#fff;border:none;padding:9px 20px;border-radius:20px;cursor:pointer;font-size:13px;font-family:var(--cfont);display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{background:#00B4D8}
+.btn-sec{background:#fff;color:#0077B6;border:2px solid #90E0EF;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-family:var(--cfont)}
+.btn-sec:hover{background:#CAF0F8}
+
+/* SENTENCE EX */
+.sentence-ex{background:#CAF0F8;border-left:4px solid #00B4D8;padding:9px 13px;border-radius:0 12px 12px 0;margin:5px 0;font-size:13px}
+.sentence-ex .s{color:#0077B6;margin-bottom:2px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.sentence-ex .e{color:#00B4D8;font-size:12px}
+
+/* TIP */
+.tip-box{background:#F5B7B1;border:2px solid #e89a94;border-radius:12px;padding:11px;margin:10px 0;font-size:12px;color:#7a3a36;line-height:1.6}
+.tip-box strong{color:#0077B6}
+
+/* FILTER */
+.filter-row{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.filter-btn{padding:6px 13px;border:2px solid #90E0EF;border-radius:20px;background:#fff;cursor:pointer;font-size:12px;color:#0077B6;font-family:var(--cfont);transition:all 0.12s}
+.filter-btn.active{background:#0077B6;color:#fff;border-color:#0077B6}
+.filter-btn:hover{background:#CAF0F8}
+
+/* QUIZ */
+.quiz-score{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:#0077B6}
+.score-num{font-size:19px;color:#0077B6}
+.progress-bar{background:#CAF0F8;border-radius:20px;height:8px;margin-bottom:1rem;border:2px solid #90E0EF}
+.progress-fill{background:#0077B6;height:100%;border-radius:20px;transition:width 0.4s}
+.quiz-card{background:#fff;border:3px solid #00B4D8;border-radius:16px;padding:1.5rem;margin-bottom:1rem}
+.quiz-q{font-size:15px;color:#0077B6;margin-bottom:1rem;text-align:center}
+.quiz-word{font-size:32px;color:#0077B6;text-align:center;margin:1rem 0;padding:1rem;background:#CAF0F8;border-radius:12px;border:2px solid #90E0EF;display:flex;align-items:center;justify-content:center;gap:12px}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1rem}
+.answer-btn{padding:12px;border:2px solid #90E0EF;border-radius:12px;background:#fff;cursor:pointer;font-size:13px;color:#0077B6;transition:all 0.15s;font-family:var(--cfont);text-align:center}
+.answer-btn:hover:not(:disabled){border-color:#00B4D8;background:#CAF0F8}
+.answer-btn.correct{background:#CAF0F8;border-color:#0077B6;color:#0077B6}
+.answer-btn.wrong{background:#F5B7B1;border-color:#e89a94;color:#7a3a36}
+.quiz-feedback{text-align:center;margin-top:10px;font-size:14px;min-height:22px}
+
+/* FLASHCARDS */
+.flashcard{background:#fff;border:3px solid #00B4D8;border-radius:20px;padding:2rem 1.5rem;text-align:center;cursor:pointer;min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;margin-bottom:1rem;transition:transform 0.15s}
+.flashcard:hover{transform:scale(1.01);border-color:#0077B6}
+.fc-word{font-size:36px;color:#0077B6}
+.fc-hint{font-size:12px;color:#00B4D8}
+.fc-answer{font-size:18px;color:#0077B6;display:none}
+.fc-ph{font-size:12px;color:#00B4D8}
+.flashcard.flipped .fc-answer{display:block}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ALPHABET */
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:7px;margin-bottom:12px}
+.alpha-card{background:#fff;border:2px solid #90E0EF;border-radius:12px;padding:9px 5px;text-align:center;cursor:pointer;transition:all 0.15s}
+.alpha-card:hover{border-color:#0077B6;background:#CAF0F8}
+.alpha-letter{font-size:20px;color:#0077B6;display:block}
+.alpha-sound{font-size:10px;color:#00B4D8;margin-top:2px;line-height:1.3}
+
+/* VIDEO */
+.video-card{background:#fff;border:3px solid #90E0EF;border-radius:16px;overflow:hidden;margin-bottom:12px}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-info{padding:12px}
+.video-title{font-size:14px;color:#0077B6;margin-bottom:4px}
+.video-desc{font-size:12px;color:#00B4D8;line-height:1.5;margin-bottom:8px}
+.vtab{padding:5px 14px;border:2px solid #90E0EF;border-radius:20px;background:#fff;cursor:pointer;font-size:12px;color:#0077B6;font-family:var(--cfont);transition:all 0.12s}
+.vtab.active{background:#0077B6;color:#fff;border-color:#0077B6}
+.vtab-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+
+/* PRONUN */
+.pronun-tool{background:#fff;border:3px solid #0077B6;border-radius:16px;padding:1.25rem;margin-bottom:1rem}
+.pronun-tool h3{font-size:15px;color:#0077B6;margin-bottom:10px;display:flex;align-items:center;gap:6px;font-weight:400}
+.pronun-input{flex:1;padding:8px 14px;border:2px solid #90E0EF;border-radius:20px;font-size:14px;font-family:var(--cfont);background:#fff;color:#0077B6}
+.pronun-input:focus{outline:none;border-color:#0077B6}
+.pronun-result{background:#CAF0F8;border-radius:12px;padding:10px 14px;font-size:13px;color:#0077B6;min-height:36px;margin-top:8px;border:2px solid #90E0EF}
+.speed-row{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:12px;color:#00B4D8}
+
+/* CULTURE */
+.culture-card{background:#fff;border:2px solid #90E0EF;border-radius:14px;padding:1.1rem;margin-bottom:10px}
+.culture-card h4{font-size:14px;color:#0077B6;margin-bottom:5px;display:flex;align-items:center;gap:7px;font-weight:400}
+.culture-card p{font-size:12px;color:#0077B6;line-height:1.6}
+
+/* RESOURCES */
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.resource-card{background:#fff;border:2px solid #90E0EF;border-radius:14px;padding:1rem;display:flex;flex-direction:column;gap:5px}
+.resource-card h4{font-size:12px;color:#0077B6}
+.resource-card p{font-size:11px;color:#00B4D8;line-height:1.5;flex:1}
+.resource-link{font-size:12px;color:#0077B6;text-decoration:none;display:inline-flex;align-items:center;gap:3px;margin-top:3px}
+
+/* PWA install banner */
+#installBanner{display:none;background:#0077B6;color:#fff;padding:10px 16px;font-size:13px;align-items:center;justify-content:space-between;gap:10px;border-bottom:3px solid #00B4D8}
+#installBanner button{background:#F5B7B1;color:#7a3a36;border:none;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:var(--cfont);font-size:12px}
+
+@media(max-width:500px){
+  .answer-grid{grid-template-columns:1fr}
+  .hero-word{font-size:34px}
+  .hero h1{font-size:20px}
+}
+
+/* WOTD */
+.wotd-big{font-size:32px;color:#0077B6}
+.wotd-ph{font-size:12px;color:#00B4D8;font-style:italic;margin:3px 0}
+.wotd-en{font-size:16px;color:#0077B6;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div id="installBanner">
+  <span>📱 Add Gagana Samoa to your home screen!</span>
+  <button onclick="installApp()">Install App</button>
+  <button onclick="document.getElementById('installBanner').style.display='none'" style="background:transparent;color:#CAF0F8;border:none;font-size:18px;cursor:pointer">✕</button>
+</div>
+
+<div class="app">
+
+<div class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <span class="hero-tag">GAGANA SAMOA</span>
+  <h1>Learn the Samoan Language!</h1>
+  <p class="hero-sub">Videos · Audio · Lessons · Quizzes — Kids to Adults</p>
+  <div class="hero-word">Talofa! 🌺</div>
+  <div class="hero-meaning">Hello · Welcome to your learning journey</div>
+</div>
+
+<nav class="nav" aria-label="Main navigation">
+  <button class="nav-btn active" onclick="showSection('home')"><i class="ti ti-home"></i> Home</button>
+  <button class="nav-btn" onclick="showSection('videos')"><i class="ti ti-player-play"></i> Videos</button>
+  <button class="nav-btn" onclick="showSection('pronun')"><i class="ti ti-volume"></i> Pronounce</button>
+  <button class="nav-btn" onclick="showSection('alphabet')"><i class="ti ti-alphabet-latin"></i> Alphabet</button>
+  <button class="nav-btn" onclick="showSection('vocab')"><i class="ti ti-book"></i> Vocab</button>
+  <button class="nav-btn" onclick="showSection('phrases')"><i class="ti ti-message"></i> Phrases</button>
+  <button class="nav-btn" onclick="showSection('grammar')"><i class="ti ti-pencil"></i> Grammar</button>
+  <button class="nav-btn" onclick="showSection('quiz')"><i class="ti ti-brain"></i> Quiz</button>
+  <button class="nav-btn" onclick="showSection('flashcards')"><i class="ti ti-cards"></i> Flashcards</button>
+  <button class="nav-btn" onclick="showSection('culture')"><i class="ti ti-world"></i> Culture</button>
+  <button class="nav-btn" onclick="showSection('resources')"><i class="ti ti-link"></i> Resources</button>
+</nav>
+
+<div class="content">
+
+<!-- HOME -->
+<div class="section active" id="home">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="wordsLearned">0</div><div class="stat-label">Words learned</div></div>
+    <div class="stat-card"><div class="stat-num" id="quizAcc">—</div><div class="stat-label">Quiz score</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Videos</div></div>
+  </div>
+  <div class="panel">
+    <h3><i class="ti ti-sparkles"></i> Word of the day</h3>
+    <div style="text-align:center;padding:.75rem 0">
+      <div class="wotd-big" id="wotdWord">Fa'amolemole</div>
+      <div class="wotd-ph" id="wotdPh">far-ah-moh-leh-moh-leh</div>
+      <div class="wotd-en" id="wotdEn">Please</div>
+      <button class="speak-btn" style="margin:10px auto 0;display:flex" onclick="speak('famolemole')"><i class="ti ti-volume"></i> Hear it!</button>
+    </div>
+    <div class="sentence-ex" style="margin-top:8px">
+      <div class="s">Fa'amolemole, fesoasoani mai. <button class="speak-btn" onclick="speak('famolemole fesoasoani mai')"><i class="ti ti-volume"></i></button></div>
+      <div class="e">Please help me.</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#0077B6;margin-bottom:10px">Choose a topic to start learning:</p>
+  <div class="lesson-grid">
+    <div class="lesson-card" onclick="showSection('videos')"><span class="icon">🎬</span><div class="title">Video Lessons</div><div class="count">5 videos</div><span class="badge">New!</span></div>
+    <div class="lesson-card" onclick="showSection('pronun')"><span class="icon">🔊</span><div class="title">Pronunciation</div><div class="count">Audio tool</div><span class="badge">New!</span></div>
+    <div class="lesson-card" onclick="showSection('alphabet')"><span class="icon">🔤</span><div class="title">Alphabet</div><div class="count">14 letters</div></div>
+    <div class="lesson-card" onclick="showSection('vocab');setFilter('greetings')"><span class="icon">👋</span><div class="title">Greetings</div><div class="count">14 phrases</div></div>
+    <div class="lesson-card" onclick="showSection('vocab');setFilter('numbers')"><span class="icon">🔢</span><div class="title">Numbers</div><div class="count">1 to 1000</div></div>
+    <div class="lesson-card" onclick="showSection('vocab');setFilter('family')"><span class="icon">👨‍👩‍👧</span><div class="title">Family</div><div class="count">16 words</div></div>
+    <div class="lesson-card" onclick="showSection('quiz')"><span class="icon">🧠</span><div class="title">Take a Quiz</div><div class="count">Test yourself</div></div>
+    <div class="lesson-card" onclick="showSection('flashcards')"><span class="icon">🃏</span><div class="title">Flashcards</div><div class="count">Study mode</div></div>
+  </div>
+  <div class="tip-box"><strong>Sound tip:</strong> Tap any <i class="ti ti-volume" style="font-size:13px;color:#0077B6"></i> button to hear words spoken aloud! Works on phones and computers.</div>
+</div>
+
+<!-- VIDEOS -->
+<div class="section" id="videos">
+  <div class="panel">
+    <h3><i class="ti ti-player-play"></i> Video lessons</h3>
+    <p style="font-size:12px;color:#00B4D8;margin-bottom:12px">Five Samoan language lessons from YouTube's best teachers!</p>
+    <div class="vtab-row">
+      <button class="vtab active" onclick="filterVideos('all',this)">All (5)</button>
+      <button class="vtab" onclick="filterVideos('beginner',this)">Beginner</button>
+      <button class="vtab" onclick="filterVideos('phrases',this)">Phrases</button>
+      <button class="vtab" onclick="filterVideos('pronunciation',this)">Pronunciation</button>
+      <button class="vtab" onclick="filterVideos('words',this)">Words</button>
+    </div>
+    <div id="videoGrid"></div>
+  </div>
+</div>
+
+<!-- PRONUNCIATION -->
+<div class="section" id="pronun">
+  <div class="pronun-tool">
+    <h3><i class="ti ti-volume"></i> Audio pronunciation tool</h3>
+    <p style="font-size:12px;color:#00B4D8;margin-bottom:10px">Type any Samoan word and hear it spoken! Use the speed slider to slow it down.</p>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input class="pronun-input" id="pronunInput" type="text" placeholder="e.g. Talofa lava" oninput="updatePhonetic()" />
+      <button class="btn-primary" onclick="speakInput()"><i class="ti ti-volume"></i> Speak!</button>
+    </div>
+    <div class="speed-row">
+      <span>Speed:</span>
+      <input type="range" min="0.3" max="1.2" step="0.1" value="0.75" id="speedSlider" style="flex:1" />
+      <span id="speedVal" style="min-width:34px">0.75x</span>
+    </div>
+    <div class="pronun-result" id="phonResult">Phonetic guide will appear here...</div>
+  </div>
+  <div class="panel">
+    <h3><i class="ti ti-list"></i> Tap to hear — quick listen!</h3>
+    <div class="filter-row" id="pronunFilterRow">
+      <button class="filter-btn active" onclick="setPronunCat('greetings')">Greetings</button>
+      <button class="filter-btn" onclick="setPronunCat('numbers')">Numbers</button>
+      <button class="filter-btn" onclick="setPronunCat('family')">Family</button>
+      <button class="filter-btn" onclick="setPronunCat('food')">Food</button>
+      <button class="filter-btn" onclick="setPronunCat('essentials')">Essentials</button>
+    </div>
+    <div id="pronunWordGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px"></div>
+  </div>
+  <div class="panel">
+    <h3><i class="ti ti-info-circle"></i> Samoan sound rules</h3>
+    <table class="vocab-table">
+      <thead><tr><th>Letter</th><th>Sounds like</th><th>Example</th><th>Listen</th></tr></thead>
+      <tbody>
+        <tr><td class="sw">A</td><td class="ph">like "father"</td><td class="sw">aso (day)</td><td><button class="speak-btn" onclick="speak('aso')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">E</td><td class="ph">like "egg"</td><td class="sw">esi (papaya)</td><td><button class="speak-btn" onclick="speak('esi')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">I</td><td class="ph">like "machine"</td><td class="sw">isi (other)</td><td><button class="speak-btn" onclick="speak('isi')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">O</td><td class="ph">pure "oh"</td><td class="sw">ola (life)</td><td><button class="speak-btn" onclick="speak('ola')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">U</td><td class="ph">like "tuna"</td><td class="sw">ulu (head)</td><td><button class="speak-btn" onclick="speak('ulu')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">G</td><td class="ph">"ng" in singer!</td><td class="sw">gagana</td><td><button class="speak-btn" onclick="speak('ngangana')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">F</td><td class="ph">like "fun"</td><td class="sw">fale (house)</td><td><button class="speak-btn" onclick="speak('fale')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">T</td><td class="ph">soft t</td><td class="sw">talofa</td><td><button class="speak-btn" onclick="speak('talofa')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">V</td><td class="ph">like "voice"</td><td class="sw">vai (water)</td><td><button class="speak-btn" onclick="speak('vai')"><i class="ti ti-volume"></i></button></td></tr>
+        <tr><td class="sw">L</td><td class="ph">like "love"</td><td class="sw">lelei (good)</td><td><button class="speak-btn" onclick="speak('lelei')"><i class="ti ti-volume"></i></button></td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box" style="margin-top:12px"><strong>Glottal stop ( ' ):</strong> A short "uh-oh" pause! <button class="speak-btn" onclick="speak('fai')">fai = to do <i class="ti ti-volume"></i></button> vs <button class="speak-btn" onclick="speak('faai')">fa'i = banana <i class="ti ti-volume"></i></button></div>
+  </div>
+</div>
+
+<!-- ALPHABET -->
+<div class="section" id="alphabet">
+  <div class="panel">
+    <h3><i class="ti ti-alphabet-latin"></i> O le Pi Faitau — The Samoan Alphabet</h3>
+    <p style="font-size:12px;color:#00B4D8;margin-bottom:12px">14 core letters. Tap any card to hear the sound!</p>
+    <p style="font-size:11px;color:#0077B6;margin-bottom:8px;letter-spacing:.5px">VOWELS</p>
+    <div class="alpha-grid">
+      <div class="alpha-card" onclick="speak('ah')"><span class="alpha-letter">A a</span><span class="alpha-sound">like "father"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('eh')"><span class="alpha-letter">E e</span><span class="alpha-sound">like "egg"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('ee')"><span class="alpha-letter">I i</span><span class="alpha-sound">like "machine"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('oh')"><span class="alpha-letter">O o</span><span class="alpha-sound">pure "oh"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('oo')"><span class="alpha-letter">U u</span><span class="alpha-sound">like "tuna"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+    </div>
+    <p style="font-size:11px;color:#0077B6;margin:8px 0;letter-spacing:.5px">CONSONANTS</p>
+    <div class="alpha-grid">
+      <div class="alpha-card" onclick="speak('fa')"><span class="alpha-letter">F f</span><span class="alpha-sound">like "fun"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('nga')"><span class="alpha-letter">G g</span><span class="alpha-sound">"ng" singer!<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('la')"><span class="alpha-letter">L l</span><span class="alpha-sound">like "love"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('ma')"><span class="alpha-letter">M m</span><span class="alpha-sound">like "moon"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('na')"><span class="alpha-letter">N n</span><span class="alpha-sound">like "nice"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('pa')"><span class="alpha-letter">P p</span><span class="alpha-sound">between p&b<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('sa')"><span class="alpha-letter">S s</span><span class="alpha-sound">like "sun"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('ta')"><span class="alpha-letter">T t</span><span class="alpha-sound">soft t<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+      <div class="alpha-card" onclick="speak('va')"><span class="alpha-letter">V v</span><span class="alpha-sound">like "voice"<br><i class="ti ti-volume" style="font-size:12px;color:#00B4D8"></i></span></div>
+    </div>
+    <div class="tip-box"><strong>Glottal stop ( ' ):</strong> Brief "uh-oh" pause. <button class="speak-btn" onclick="speak('tama')">tama = boy <i class="ti ti-volume"></i></button> vs <button class="speak-btn" onclick="speak('tamaa')">tamā = father <i class="ti ti-volume"></i></button></div>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<div class="section" id="vocab">
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" onclick="setFilter('greetings')">Greetings</button>
+    <button class="filter-btn" onclick="setFilter('numbers')">Numbers</button>
+    <button class="filter-btn" onclick="setFilter('family')">Family</button>
+    <button class="filter-btn" onclick="setFilter('colors')">Colors</button>
+    <button class="filter-btn" onclick="setFilter('body')">Body</button>
+    <button class="filter-btn" onclick="setFilter('food')">Food</button>
+    <button class="filter-btn" onclick="setFilter('days')">Days</button>
+    <button class="filter-btn" onclick="setFilter('essentials')">Essentials</button>
+  </div>
+  <div id="vocabContent"></div>
+</div>
+
+<!-- PHRASES -->
+<div class="section" id="phrases">
+  <div class="panel"><h3><i class="ti ti-message"></i> Everyday phrases</h3><div id="phrasesContent"></div></div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="section" id="grammar">
+  <div class="panel">
+    <h3><i class="ti ti-pencil"></i> Grammar essentials</h3>
+    <div style="margin-bottom:1.25rem">
+      <p style="font-size:13px;color:#0077B6;margin-bottom:7px">1. Sentence order: Verb — Subject — Object</p>
+      <p style="font-size:12px;color:#00B4D8;margin-bottom:7px">Unlike English, Samoan puts the verb first!</p>
+      <div class="sentence-ex"><div class="s">'Ua alu le tama. <button class="speak-btn" onclick="speak('ua alu le tama')"><i class="ti ti-volume"></i></button></div><div class="e">The boy went.</div></div>
+      <div class="sentence-ex"><div class="s">E fiafia le teine. <button class="speak-btn" onclick="speak('e fiafia le teine')"><i class="ti ti-volume"></i></button></div><div class="e">The girl is happy.</div></div>
+    </div>
+    <div style="margin-bottom:1.25rem">
+      <p style="font-size:13px;color:#0077B6;margin-bottom:7px">2. Tense markers</p>
+      <table class="vocab-table">
+        <thead><tr><th>Marker</th><th>Tense</th><th>Example</th><th>Listen</th></tr></thead>
+        <tbody>
+          <tr><td class="sw">E</td><td class="ph">Present</td><td class="sw">E alu au — I go</td><td><button class="speak-btn" onclick="speak('e alu au')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">'Ua</td><td class="ph">Recent past</td><td class="sw">'Ua alu — I have gone</td><td><button class="speak-btn" onclick="speak('ua alu au')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">Sa</td><td class="ph">Past</td><td class="sw">Sa alu — I went</td><td><button class="speak-btn" onclick="speak('sa alu au')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">O le a</td><td class="ph">Future</td><td class="sw">O le a alu — I will go</td><td><button class="speak-btn" onclick="speak('o le a alu au')"><i class="ti ti-volume"></i></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-bottom:1.25rem">
+      <p style="font-size:13px;color:#0077B6;margin-bottom:7px">3. Pronouns</p>
+      <table class="vocab-table">
+        <thead><tr><th>Samoan</th><th>English</th><th>Listen</th></tr></thead>
+        <tbody>
+          <tr><td class="sw">Au / A'u</td><td class="ph">I / me</td><td><button class="speak-btn" onclick="speak('au')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">'Oe</td><td class="ph">You</td><td><button class="speak-btn" onclick="speak('oe')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">Ia</td><td class="ph">He / She / It</td><td><button class="speak-btn" onclick="speak('ia')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">Mātou</td><td class="ph">We (excl. you)</td><td><button class="speak-btn" onclick="speak('maatou')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">Tātou</td><td class="ph">We (incl. you)</td><td><button class="speak-btn" onclick="speak('taatou')"><i class="ti ti-volume"></i></button></td></tr>
+          <tr><td class="sw">Lātou</td><td class="ph">They</td><td><button class="speak-btn" onclick="speak('laetou')"><i class="ti ti-volume"></i></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box"><strong>Golden rule:</strong> All Samoan words end in a vowel! Consonants never appear next to each other.</div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-score">
+    <span>Score: <span class="score-num" id="scoreDisplay">0 / 0</span></span>
+    <button class="btn-sec" onclick="resetQuiz()"><i class="ti ti-refresh"></i> New quiz</button>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="quizProgress" style="width:0%"></div></div>
+  <div class="quiz-card">
+    <div class="quiz-q" id="quizQuestion">What does this Samoan word mean?</div>
+    <div class="quiz-word" id="quizWordWrap">
+      <span id="quizWord"></span>
+      <button class="speak-btn" onclick="speak(document.getElementById('quizWord').textContent)"><i class="ti ti-volume"></i></button>
+    </div>
+    <div class="answer-grid" id="answerGrid"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+  </div>
+  <div style="text-align:center">
+    <button class="btn-primary" onclick="nextQuestion()"><i class="ti ti-arrow-right"></i> Next question</button>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section" id="flashcards">
+  <div class="fc-nav">
+    <button class="btn-sec" onclick="prevCard()"><i class="ti ti-arrow-left"></i> Prev</button>
+    <span id="fcCounter" style="font-size:13px;color:#0077B6">1 / 30</span>
+    <button class="btn-sec" onclick="nextCard()">Next <i class="ti ti-arrow-right"></i></button>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFlashFilter('all')">All</button>
+    <button class="filter-btn" onclick="setFlashFilter('greetings')">Greetings</button>
+    <button class="filter-btn" onclick="setFlashFilter('numbers')">Numbers</button>
+    <button class="filter-btn" onclick="setFlashFilter('family')">Family</button>
+    <button class="filter-btn" onclick="setFlashFilter('food')">Food</button>
+  </div>
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="fc-hint">Tap to see the meaning!</div>
+    <div class="fc-word" id="fcWord"></div>
+    <div class="fc-ph" id="fcPhonetic"></div>
+    <div class="fc-answer" id="fcAnswer"></div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:10px;margin-top:4px">
+    <button class="speak-btn" onclick="speak(document.getElementById('fcWord').textContent)" style="padding:8px 18px"><i class="ti ti-volume"></i> Hear word!</button>
+  </div>
+</div>
+
+<!-- CULTURE -->
+<div class="section" id="culture">
+  <div class="culture-card"><h4><i class="ti ti-heart"></i> Fa'a Samoa — The Samoan Way</h4><p>Fa'a Samoa means "the Samoan way" — family first, respect for elders, and service to community. <button class="speak-btn" onclick="speak('faa samoa')">Hear it <i class="ti ti-volume"></i></button></p></div>
+  <div class="culture-card"><h4><i class="ti ti-users"></i> 'Aiga — Extended Family</h4><p>'Aiga <button class="speak-btn" onclick="speak('aiga')"><i class="ti ti-volume"></i></button> means extended family — the core of Samoan life, including parents, siblings, grandparents, and cousins. Everyone looks after each other!</p></div>
+  <div class="culture-card"><h4><i class="ti ti-crown"></i> The Matai System</h4><p>A matai <button class="speak-btn" onclick="speak('matai')"><i class="ti ti-volume"></i></button> is the chief or head of a family. Both men and women can be matai.</p></div>
+  <div class="culture-card"><h4><i class="ti ti-drop-circle"></i> The 'Ava Ceremony</h4><p>A special ceremony where a drink made from the pepper plant root is shared to mark important events like welcoming guests or naming a new matai.</p></div>
+  <div class="culture-card"><h4><i class="ti ti-pencil"></i> Tatau — The Sacred Tattoo</h4><p>The English word "tattoo" comes from the Samoan tatau <button class="speak-btn" onclick="speak('tatau')"><i class="ti ti-volume"></i></button>! Tattoos tell the story of a person's family, culture, and identity.</p></div>
+  <div class="culture-card"><h4><i class="ti ti-music"></i> Gagana Samoa — The Language</h4><p>Gagana Samoa <button class="speak-btn" onclick="speak('gagana samoa')"><i class="ti ti-volume"></i></button> is kept alive through songs, stories, and oral traditions. Samoa Language Week is celebrated every year worldwide!</p></div>
+</div>
+
+<!-- RESOURCES -->
+<div class="section" id="resources">
+  <p style="font-size:12px;color:#0077B6;margin-bottom:12px">All the websites and videos used to build this app:</p>
+  <div class="resources-grid">
+    <div class="resource-card"><h4><i class="ti ti-player-play"></i> Common Samoan Phrases</h4><p>Daily greetings and conversation starters.</p><a class="resource-link" href="https://www.youtube.com/watch?v=19ja3chRit4" target="_blank">Watch <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-player-play"></i> Beginner Words</h4><p>Native speaker Marlena & son Denzel.</p><a class="resource-link" href="https://www.youtube.com/watch?v=zQdB7XKDCp0" target="_blank">Watch <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-player-play"></i> Everyday Phrases (Animated)</h4><p>Pacific Learners animated lesson.</p><a class="resource-link" href="https://www.youtube.com/watch?v=fjGCFEVIKRU" target="_blank">Watch <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-player-play"></i> Everyday Words (Animated)</h4><p>Pacific Learners vocabulary and numbers.</p><a class="resource-link" href="https://www.youtube.com/watch?v=A464fwqLHHc" target="_blank">Watch <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-player-play"></i> Pronunciation Guide</h4><p>Clear alphabet and sounds for beginners.</p><a class="resource-link" href="https://www.youtube.com/watch?v=IDBrFCyEaOk" target="_blank">Watch <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-world"></i> Gagana-Samoa.com</h4><p>Full grammar guide with audio.</p><a class="resource-link" href="https://gagana-samoa.com" target="_blank">Visit <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-book"></i> Samoan.ws</h4><p>Complete language guide and vocabulary.</p><a class="resource-link" href="https://samoan.ws" target="_blank">Visit <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-school"></i> LearnSamoan.com</h4><p>Structured online courses.</p><a class="resource-link" href="https://courses.learnsamoan.com" target="_blank">Study <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-sun"></i> The Koko Samoa</h4><p>Cultural context and vocabulary guides.</p><a class="resource-link" href="https://thekokosamoa.com.au" target="_blank">Read <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-device-mobile"></i> Asalei App</h4><p>Mobile app with audio lessons.</p><a class="resource-link" href="https://www.asalei.app/learn-samoan" target="_blank">Download <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-map"></i> Samoa Tourism</h4><p>Travel phrases and cultural tips.</p><a class="resource-link" href="https://www.samoa.travel/pagepreview/language" target="_blank">Explore <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+    <div class="resource-card"><h4><i class="ti ti-file-text"></i> 2026 Language Week PDF</h4><p>Official NZ Government resource card.</p><a class="resource-link" href="https://www.mpp.govt.nz/assets/2026-pacific-language-week-assets/Samoa-Language-Week-2026/0107-Language-Card-Refresh-2026-Samoa.pdf" target="_blank">Download <i class="ti ti-external-link" style="font-size:10px"></i></a></div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /app -->
+
+<script>
+const vd={greetings:[{s:"Talofa",p:"tah-lo-far",e:"Hello (formal)",ex:"Talofa lava — Hello!"},{s:"Talofa lava",p:"tah-lo-far lah-vah",e:"Hello (most formal)",ex:"Talofa lava, oa mai 'oe?"},{s:"Malo le soifua",p:"mah-lo leh soy-foo-ah",e:"Greetings, good health",ex:"Respectful for elders"},{s:"Tofa",p:"toh-far",e:"Goodbye",ex:"Tofa soifua — Farewell"},{s:"Manuia",p:"mah-noo-ee-ah",e:"Good wishes",ex:"Manuia le aso! — Good day!"},{s:"'O ā mai 'oe?",p:"oh ah my oh-eh",e:"How are you?",ex:"Common after Talofa"},{s:"Manuia fa'afetai",p:"mah-noo-ee-ah fah-ah-feh-tie",e:"Fine, thank you",ex:"Reply to how are you"},{s:"Fa'afetai",p:"fah-ah-feh-tie",e:"Thank you",ex:"Fa'afetai tele lava"},{s:"Fa'afetai tele lava",p:"fah-ah-feh-tie teh-leh lah-vah",e:"Thank you very much",ex:"Deep gratitude"},{s:"Fa'amolemole",p:"fah-ah-moh-leh-moh-leh",e:"Please",ex:"Fa'amolemole fesoasoani"},{s:"Ioe",p:"ee-oh-eh",e:"Yes",ex:"Ioe, e mafai"},{s:"Leai",p:"leh-eye",e:"No",ex:"Leai fa'afetai"},{s:"Tulou lava",p:"too-loh lah-vah",e:"Excuse me",ex:"Said when passing someone"},{s:"Fa'amālō!",p:"fah-ah-mah-loh",e:"Well done!",ex:"Fa'amālō atu!"}],
+numbers:[{s:"Tasi",p:"tah-see",e:"1 — One",ex:"E tasi"},{s:"Lua",p:"loo-ah",e:"2 — Two",ex:"Lua fale"},{s:"Tolu",p:"toh-loo",e:"3 — Three",ex:"Tolu aso"},{s:"Fā",p:"fah",e:"4 — Four",ex:"Fā tagata"},{s:"Lima",p:"lee-mah",e:"5 — Five",ex:"Lima = hand too!"},{s:"Ono",p:"oh-noh",e:"6 — Six",ex:"Ono"},{s:"Fitu",p:"fee-too",e:"7 — Seven",ex:"Fitu"},{s:"Valu",p:"vah-loo",e:"8 — Eight",ex:"Valu"},{s:"Iva",p:"ee-vah",e:"9 — Nine",ex:"Iva"},{s:"Sefulu",p:"seh-foo-loo",e:"10 — Ten",ex:"Sefulu"},{s:"Sefulu tasi",p:"seh-foo-loo tah-see",e:"11 — Eleven",ex:"Pattern: sefulu + number"},{s:"Luafulu",p:"loo-ah-foo-loo",e:"20 — Twenty",ex:"Lua x ten"},{s:"Selau",p:"seh-lau",e:"100 — Hundred",ex:"Selau"},{s:"Afe",p:"ah-feh",e:"1000 — Thousand",ex:"Afe"}],
+family:[{s:"'Aiga",p:"ah-ing-ah",e:"Extended family",ex:"O lo'u 'aiga"},{s:"Māmā",p:"mah-mah",e:"Mother",ex:"O lo'u māmā"},{s:"Pāpā",p:"pah-pah",e:"Father",ex:"O lo'u pāpā"},{s:"Tamā",p:"tah-maa",e:"Father (formal)",ex:"tama (short) = boy"},{s:"Tina",p:"tee-nah",e:"Mother (formal)",ex:"O le tina"},{s:"Tama",p:"tah-mah",e:"Boy / Child",ex:"O le tama lelei"},{s:"Teine",p:"teh-ee-neh",e:"Girl",ex:"O le teine"},{s:"Uso",p:"oo-soh",e:"Sibling (same gender)",ex:"O lo'u uso"},{s:"Tuagane",p:"too-ah-ngah-neh",e:"Brother (of a girl)",ex:"O lo'u tuagane"},{s:"Tuafafine",p:"too-ah-fah-fee-neh",e:"Sister (of a boy)",ex:"O lo'u tuafafine"},{s:"Matua",p:"mah-too-ah",e:"Parent / Elder",ex:"O matua"},{s:"Matai",p:"mah-tie",e:"Chief / Family head",ex:"Leads the 'aiga"},{s:"Lo'u",p:"loh-oo",e:"My (possessive)",ex:"Lo'u tama"},{s:"Tama'ita'i",p:"tah-mah-ee-tie",e:"Young woman",ex:"Respectful term"},{s:"Toeaina",p:"toh-eh-ah-ee-nah",e:"Elder man",ex:"Respectful"},{s:"Tamālo'a",p:"tah-mah-loh-ah",e:"Man / Male",ex:"O le tamālo'a"}],
+colors:[{s:"Mumu",p:"moo-moo",e:"Red",ex:"O le lanu mumu"},{s:"Lanu moana",p:"lah-noo moh-ah-nah",e:"Blue",ex:"Colour of the ocean"},{s:"Lanumeamata",p:"lah-noo-meh-ah-mah-tah",e:"Green",ex:"O le lanumeamata"},{s:"Samasama",p:"sah-mah-sah-mah",e:"Yellow",ex:"O le samasama"},{s:"Uliuli",p:"oo-lee-oo-lee",e:"Black",ex:"O le uliuli"},{s:"Pa'epa'e",p:"pah-eh-pah-eh",e:"White",ex:"O le pa'epa'e"},{s:"Kulokulo",p:"koo-loh-koo-loh",e:"Pink",ex:"O le kulokulo"},{s:"Lanu vao",p:"lah-noo vah-oh",e:"Forest green",ex:"Colour of forest"},{s:"Efuefu",p:"eh-foo-eh-foo",e:"Grey",ex:"O le efuefu"},{s:"Lanulelei",p:"lah-noo-leh-leh-ee",e:"Purple",ex:"O le lanulelei"}],
+body:[{s:"Ulu",p:"oo-loo",e:"Head",ex:"O lo'u ulu"},{s:"Mata",p:"mah-tah",e:"Eye / Face",ex:"O lona mata"},{s:"Gutu",p:"ngoo-too",e:"Mouth",ex:"Tapuni lou gutu"},{s:"Taliga",p:"tah-lee-ngah",e:"Ear",ex:"Fa'alogo — Listen"},{s:"Lima",p:"lee-mah",e:"Hand (also: 5)",ex:"O lo'u lima"},{s:"Vae",p:"vah-eh",e:"Leg / Foot",ex:"O lo'u vae"},{s:"Manava",p:"mah-nah-vah",e:"Stomach",ex:"E tiga lo'u manava"},{s:"Fatu",p:"fah-too",e:"Heart",ex:"O lo'u fatu"},{s:"Nifo",p:"nee-foh",e:"Tooth",ex:"O ona nifo"},{s:"Tua",p:"too-ah",e:"Back",ex:"O lo'u tua"},{s:"Fofoga",p:"foh-foh-ngah",e:"Face (respectful)",ex:"For chiefs"},{s:"Laugutu",p:"lau-ngoo-too",e:"Lip",ex:"O lona laugutu"}],
+food:[{s:"Fa'i",p:"fah-ee",e:"Banana",ex:"E lelei le fa'i"},{s:"'Ulu",p:"oo-loo",e:"Breadfruit",ex:"Samoan staple"},{s:"Esi",p:"eh-see",e:"Papaya",ex:"E suamalie — Sweet!"},{s:"Talo",p:"tah-loh",e:"Taro",ex:"Central to Samoan cooking"},{s:"Umu",p:"oo-moo",e:"Earth oven",ex:"Traditional cooking"},{s:"Palusami",p:"pah-loo-sah-mee",e:"Taro leaves in coconut cream",ex:"Traditional dish"},{s:"Niu",p:"nee-oo",e:"Coconut",ex:"E suamalie le niu"},{s:"I'a",p:"ee-ah",e:"Fish",ex:"E 'aina le i'a"},{s:"Pua'a",p:"poo-ah-ah",e:"Pig / Pork",ex:"Feast food"},{s:"Vai",p:"vah-ee",e:"Water",ex:"Aumai se vai"},{s:"Koko Samoa",p:"koh-koh sah-moh-ah",e:"Samoan cocoa drink",ex:"Traditional hot chocolate"},{s:"Suamalie",p:"soo-ah-mah-lee-eh",e:"Delicious!",ex:"E suamalie!"},{s:"Mea'ai",p:"meh-ah-eye",e:"Food",ex:"E iai se mea'ai?"},{s:"Kai",p:"kai",e:"To eat",ex:"E fia kai — I am hungry"}],
+days:[{s:"Aso",p:"ah-soh",e:"Day",ex:"Aso nei — Today"},{s:"Aso Sā",p:"ah-soh sah",e:"Sunday",ex:"Sā = sacred"},{s:"Aso Gafua",p:"ah-soh ngah-foo-ah",e:"Monday",ex:"First working day"},{s:"Aso Lua",p:"ah-soh loo-ah",e:"Tuesday",ex:"Lua = two"},{s:"Aso Lulu",p:"ah-soh loo-loo",e:"Wednesday",ex:"Mid-week"},{s:"Aso Tofi",p:"ah-soh toh-fee",e:"Thursday",ex:"Fourth day"},{s:"Aso Faraile",p:"ah-soh fah-rah-ee-leh",e:"Friday",ex:"From English"},{s:"Aso To'ona'i",p:"ah-soh toh-oh-nah-ee",e:"Saturday",ex:"Day of the feast"},{s:"Taeao",p:"tah-eh-ah-oh",e:"Morning / Tomorrow",ex:"Taeao atu"},{s:"Afiafi",p:"ah-fee-ah-fee",e:"Evening",ex:"Manuia le afiafi"},{s:"Po",p:"poh",e:"Night",ex:"Manuia le po"},{s:"Nei",p:"neh-ee",e:"Now / Today",ex:"Aso nei"}],
+essentials:[{s:"Fale",p:"fah-leh",e:"House",ex:"O le fale"},{s:"Alofa",p:"ah-loh-fah",e:"Love",ex:"Alofa atu"},{s:"Lelei",p:"leh-leh-ee",e:"Good / Fine",ex:"E lelei"},{s:"Leaga",p:"leh-ah-ngah",e:"Bad",ex:"E leaga"},{s:"Tele",p:"teh-leh",e:"Many / Very",ex:"Fa'afetai tele"},{s:"La'ititi",p:"lah-ee-tee-tee",e:"Small",ex:"E la'ititi"},{s:"Alu",p:"ah-loo",e:"Go",ex:"Alu atu!"},{s:"Sau",p:"sah-oo",e:"Come",ex:"Sau! — Come here!"},{s:"Nofo",p:"noh-foh",e:"Sit / Stay",ex:"Nofo iinei"},{s:"Gagana",p:"ngah-ngah-nah",e:"Language",ex:"Gagana Samoa"},{s:"Fa'alogo",p:"fah-ah-loh-ngoh",e:"Listen",ex:"Fa'alogo!"},{s:"Tautala",p:"tau-tah-lah",e:"Speak",ex:"Tautala Samoa"},{s:"Fesili",p:"feh-see-lee",e:"Question",ex:"E iai sau fesili?"},{s:"Malamalama",p:"mah-lah-mah-lah-mah",e:"Understand",ex:"E le malamalama"}]};
+
+const phrases=[
+  {label:"Introductions",items:[{s:"O lo'u igoa o ___.",e:"My name is ___."},{ s:"O ai lou igoa?",e:"What is your name?"},{s:"E fia ou tausaga?",e:"How old are you?"},{s:"E ___ o'u tausaga.",e:"I am ___ years old."},{s:"'O fea e te i ai?",e:"Where are you from?"},{s:"E nofo au i ___.",e:"I live in ___."}]},
+  {label:"Daily life",items:[{s:"E iai se mea'ai?",e:"Is there food?"},{s:"Aumai se vai, fa'amolemole.",e:"Please bring me water."},{s:"E fia le tau?",e:"How much does it cost?"},{s:"E le malamalama au.",e:"I don't understand."},{s:"Fa'amolemole toe fai mai.",e:"Please say that again."},{s:"E mafai ona e fesoasoani mai?",e:"Can you help me?"}]},
+  {label:"Feelings",items:[{s:"E fiafia au.",e:"I am happy."},{s:"E tigā au.",e:"I am in pain / sad."},{s:"E fia moe au.",e:"I am sleepy."},{s:"E fia 'ai au.",e:"I am hungry."},{s:"E fia inu au.",e:"I am thirsty."},{s:"E logo fua au.",e:"I am tired."}]},
+  {label:"Compliments",items:[{s:"E lelei lava!",e:"Very good! Excellent!"},{s:"E matagofie!",e:"It is beautiful!"},{s:"E poto 'oe!",e:"You are clever!"},{s:"Fa'amālō!",e:"Well done!"},{s:"Manuia!",e:"Good wishes to you!"}]}
+];
+
+const videos=[
+  {id:"19ja3chRit4",title:"Common Samoan Phrases",desc:"Daily-use greetings, thank-yous, and conversation starters.",tags:["beginner","phrases"]},
+  {id:"zQdB7XKDCp0",title:"Useful Words & Phrases for Beginners",desc:"Native speaker Marlena and son Denzel teach useful words.",tags:["beginner","phrases","words"]},
+  {id:"fjGCFEVIKRU",title:"Everyday Phrases (Animated)",desc:"Pacific Learners fun animated lesson for all ages!",tags:["beginner","phrases"]},
+  {id:"A464fwqLHHc",title:"Everyday Words (Animated)",desc:"Pacific Learners vocabulary and numbers for beginners!",tags:["beginner","words"]},
+  {id:"IDBrFCyEaOk",title:"Pronunciation for Beginners",desc:"Clear guide to the Samoan alphabet and all sounds.",tags:["pronunciation"]},
+];
+
+let curFilter='greetings',qData=[],qIdx=0,qCorrect=0,qTotal=0,fcData=[],fcIdx=0,fcFF='all',wordsLearned=new Set(),speechRate=0.75,activeVF='all',deferredPrompt=null;
+
+function speak(text){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.rate=speechRate;u.lang='en-US';
+  const voices=window.speechSynthesis.getVoices();
+  const sm=voices.find(v=>v.lang&&v.lang.toLowerCase().includes('sm'));
+  if(sm)u.lang=sm.lang;
+  window.speechSynthesis.speak(u);
+}
+
+function speakInput(){const t=document.getElementById('pronunInput').value.trim();if(t)speak(t);updatePhonetic();}
+
+function updatePhonetic(){
+  const t=document.getElementById('pronunInput').value.trim();
+  if(!t){document.getElementById('phonResult').textContent='Phonetic guide will appear here...';return;}
+  const rules={"talofa":"tah-lo-far","talofa lava":"tah-lo-far lah-vah","fa'afetai":"fah-ah-feh-tie","fa'amolemole":"fah-ah-moh-leh-moh-leh","manuia":"mah-noo-ee-ah","gagana":"ngah-ngah-nah","samoa":"sah-moh-ah","aiga":"ah-ing-ah","matai":"mah-tie","sefulu":"seh-foo-loo","lelei":"leh-leh-ee","tofa":"toh-far","ioe":"ee-oh-eh","leai":"leh-eye"};
+  const l=t.toLowerCase().replace(/['']/g,"'");
+  const g=rules[l]||t.toLowerCase().replace(/g/g,'ng').replace(/a/g,'ah').replace(/e/g,'eh').replace(/o/g,'oh').replace(/i/g,'ee').replace(/u/g,'oo');
+  document.getElementById('phonResult').textContent='Pronunciation: '+g;
+}
+
+document.getElementById('speedSlider').addEventListener('input',function(){speechRate=parseFloat(this.value);document.getElementById('speedVal').textContent=parseFloat(this.value).toFixed(1)+'x';});
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const ids=['home','videos','pronun','alphabet','vocab','phrases','grammar','quiz','flashcards','culture','resources'];
+  const i=ids.indexOf(id);if(i>=0)document.querySelectorAll('.nav-btn')[i].classList.add('active');
+  if(id==='vocab')renderVocab(curFilter);
+  if(id==='phrases')renderPhrases();
+  if(id==='quiz')initQuiz();
+  if(id==='flashcards')renderFlashcards();
+  if(id==='videos')renderVideos(activeVF);
+  if(id==='pronun')renderPronunWords('greetings');
+  window.scrollTo(0,0);
+}
+
+function filterVideos(tag,btn){
+  activeVF=tag;
+  document.querySelectorAll('.vtab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderVideos(tag);
+}
+
+function renderVideos(tag){
+  const list=tag==='all'?videos:videos.filter(v=>v.tags.includes(tag));
+  let h='';
+  list.forEach(v=>{h+=`<div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1" title="${v.title}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-desc">${v.desc}</div></div></div>`;});
+  document.getElementById('videoGrid').innerHTML=h||'<p style="color:#00B4D8;font-size:13px">No videos in this category.</p>';
+}
+
+function setFilter(cat){
+  curFilter=cat;
+  document.querySelectorAll('#filterRow .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===cat));
+  renderVocab(cat);
+}
+
+function renderVocab(cat){
+  const data=vd[cat]||[];
+  data.forEach(w=>wordsLearned.add(w.s));updateStats();
+  const icons={greetings:'👋',numbers:'🔢',family:'👨‍👩‍👧',colors:'🎨',body:'🫀',food:'🍌',days:'📅',essentials:'⭐'};
+  let h=`<div class="panel"><h3>${icons[cat]||'📚'} ${cat.charAt(0).toUpperCase()+cat.slice(1)}</h3><div style="overflow-x:auto"><table class="vocab-table"><thead><tr><th>Samoan</th><th>Pronunciation</th><th>English</th><th>Sentence</th><th>Audio</th></tr></thead><tbody>`;
+  data.forEach(w=>{h+=`<tr><td class="sw">${w.s}</td><td class="ph">${w.p}</td><td style="color:#0077B6">${w.e}</td><td style="font-size:11px;color:#00B4D8">${w.ex}</td><td><button class="speak-btn" onclick="speak('${w.s.replace(/['"]/g,'')}')"><i class="ti ti-volume"></i></button></td></tr>`;});
+  h+='</tbody></table></div></div>';document.getElementById('vocabContent').innerHTML=h;
+}
+
+function renderPhrases(){
+  let h='';
+  phrases.forEach(g=>{
+    h+=`<div style="margin-bottom:1.25rem"><p style="font-size:13px;color:#0077B6;margin-bottom:7px">${g.label}</p>`;
+    g.items.forEach(p=>{h+=`<div class="sentence-ex"><div class="s">${p.s}<button class="speak-btn" onclick="speak('${p.s.replace(/['"]/g,'')}')"><i class="ti ti-volume"></i></button></div><div class="e">${p.e}</div></div>`;});
+    h+='</div>';
+  });document.getElementById('phrasesContent').innerHTML=h;
+}
+
+function setPronunCat(cat){
+  document.querySelectorAll('#pronunFilterRow .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===cat));
+  renderPronunWords(cat);
+}
+
+function renderPronunWords(cat){
+  const data=vd[cat]||[];
+  let h='';
+  data.forEach(w=>{h+=`<div style="background:#CAF0F8;border-radius:12px;padding:10px;cursor:pointer;text-align:center;border:2px solid #90E0EF;transition:border-color 0.15s" onclick="speak('${w.s.replace(/['"]/g,'')}')"><div class="sw" style="font-size:15px">${w.s}</div><div class="ph" style="font-size:10px;margin:3px 0">${w.p}</div><div style="font-size:11px;color:#0077B6">${w.e.split(' — ')[0]}</div><i class="ti ti-volume" style="font-size:15px;color:#0077B6;margin-top:4px;display:block"></i></div>`;});
+  document.getElementById('pronunWordGrid').innerHTML=h;
+}
+
+function buildPool(){let p=[];Object.values(vd).forEach(a=>a.forEach(w=>p.push(w)));return p;}
+
+function initQuiz(){
+  qData=buildPool();qData.sort(()=>Math.random()-0.5);
+  qIdx=0;qCorrect=0;qTotal=0;loadQ();
+}
+
+function loadQ(){
+  if(qIdx>=qData.length)qIdx=0;
+  const q=qData[qIdx];
+  document.getElementById('quizWord').textContent=q.s;
+  document.getElementById('quizFeedback').textContent='';
+  const correct=q.e.split(' — ')[0].split(' /')[0];
+  const pool=buildPool().filter(w=>w.s!==q.s).sort(()=>Math.random()-0.5).slice(0,3).map(w=>w.e.split(' — ')[0].split(' /')[0]);
+  const opts=[correct,...pool].sort(()=>Math.random()-0.5);
+  let g='';opts.forEach(o=>{g+=`<button class="answer-btn" onclick="checkA(this,'${o.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">${o}</button>`;});
+  document.getElementById('answerGrid').innerHTML=g;
+  document.getElementById('quizProgress').style.width=Math.min(qIdx/qData.length*100,100)+'%';
+}
+
+function checkA(btn,chosen,correct){
+  document.querySelectorAll('.answer-btn').forEach(b=>b.disabled=true);
+  const ok=chosen===correct;
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok)document.querySelectorAll('.answer-btn').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
+  qTotal++;if(ok){qCorrect++;speak(qData[qIdx].s);}
+  document.getElementById('quizFeedback').textContent=ok?'Manuia! Correct! 🎉':'Not quite — '+correct;
+  document.getElementById('quizFeedback').style.color=ok?'#0077B6':'#7a3a36';
+  document.getElementById('scoreDisplay').textContent=qCorrect+' / '+qTotal;
+  updateStats();
+}
+
+function nextQuestion(){qIdx++;loadQ();}
+function resetQuiz(){initQuiz();}
+
+function setFlashFilter(f){
+  fcFF=f;
+  document.querySelectorAll('#flashcards .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===f));
+  fcIdx=0;renderFlashcards();
+}
+
+function renderFlashcards(){
+  if(fcFF==='all'){fcData=[];Object.values(vd).forEach(a=>a.forEach(w=>fcData.push(w)));}
+  else fcData=vd[fcFF]||[];
+  showCard();
+}
+
+function showCard(){
+  if(!fcData.length)return;
+  document.getElementById('flashcard').classList.remove('flipped');
+  const w=fcData[fcIdx];
+  document.getElementById('fcWord').textContent=w.s;
+  document.getElementById('fcPhonetic').textContent=w.p;
+  document.getElementById('fcAnswer').textContent=w.e;
+  document.getElementById('fcCounter').textContent=(fcIdx+1)+' / '+fcData.length;
+}
+
+function flipCard(){
+  document.getElementById('flashcard').classList.toggle('flipped');
+  wordsLearned.add(fcData[fcIdx].s);
+  updateStats();
+}
+
+function nextCard(){fcIdx=(fcIdx+1)%fcData.length;showCard();}
+function prevCard(){fcIdx=(fcIdx-1+fcData.length)%fcData.length;showCard();}
+
+function updateStats(){
+  document.getElementById('wordsLearned').textContent=wordsLearned.size;
+  document.getElementById('quizAcc').textContent=qTotal>0?Math.round(qCorrect/qTotal*100)+'%':'—';
+}
+
+// PWA install prompt
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  document.getElementById('installBanner').style.display='flex';
+});
+function installApp(){
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBanner').style.display='none';});}
+}
+window.addEventListener('appinstalled',()=>{document.getElementById('installBanner').style.display='none';});
+
+// Service worker registration
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
+
+window.speechSynthesis&&window.speechSynthesis.getVoices();
+renderFlashcards();initQuiz();renderPronunWords('greetings');
+</script>
+</body>
+</html>
